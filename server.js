@@ -16,10 +16,13 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
+const PORT = process.env.PORT || 3000;
+const db = 'mongodb+srv://drl1ng:090101Danil@cluster0.plxxmmk.mongodb.net/node-rustam?retryWrites=true&w=majority';
+
 mongoose
-  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((res) => console.log(successMsg('Connected to DB')))
-  .catch((error) => console.log(errorMsg(error)));
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((res) => console.log('Connected to DB'))
+  .catch((error) => console.log(error));
 
 app.listen(process.env.PORT, (error) => {
   error ? console.log(errorMsg(error)) : console.log(successMsg(`listening port ${process.env.PORT}`));
