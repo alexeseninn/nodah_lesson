@@ -2,7 +2,6 @@ const express = require('express');
 const chalk = require('chalk');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-require('dotenv').config();
 const methodOverride = require('method-override');
 const postRoutes = require('./routes/post-routes');
 const postApiRoutes = require('./routes/api-post-routes');
@@ -16,7 +15,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const db = 'mongodb+srv://drl1ng:090101Danil@cluster0.plxxmmk.mongodb.net/node-rustam?retryWrites=true&w=majority';
 
 mongoose
@@ -24,8 +23,8 @@ mongoose
   .then((res) => console.log('Connected to DB'))
   .catch((error) => console.log(error));
 
-app.listen(process.env.PORT, (error) => {
-  error ? console.log(errorMsg(error)) : console.log(successMsg(`listening port ${process.env.PORT}`));
+app.listen(PORT, (error) => {
+  error ? console.log(errorMsg(error)) : console.log(successMsg(`listening port ${PORT}`));
 });
 
 app.use(express.urlencoded({ extended: false }));
